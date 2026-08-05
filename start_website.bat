@@ -1,7 +1,7 @@
 @echo off
-title MedPal Local Website Server
+title Vitae Local Website Server
 echo ========================================================
-echo   MedPal Local Development Server
+echo   Vitae Local Development Server
 echo ========================================================
 echo.
 echo Opening website in your default browser...

@@ -1,7 +1,7 @@
 {
-  "name": "medpal-website-",
+  "name": "vitae-website",
   "version": "1.0.0",
-  "description": "<p align=\"center\">\r   <img src=\"public/logo.png\" alt=\"MedPal Logo\" width=\"180\"/>\r </p>",
+  "description": "<p align=\"center\">\r   <img src=\"public/logo.png\" alt=\"Vitae Logo\" width=\"180\"/>\r </p>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

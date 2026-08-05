@@ -1,11 +1,11 @@
-# 🩺 MedPal – AI Medical Assistant Website
+# 🩺 Vitae: AI Medical Assistant Website
 
 <p align="center">
-  <img src="public/logo.png" alt="MedPal Logo" width="180"/>
+  <img src="public/logo.png" alt="Vitae Logo" width="180"/>
 </p>
 
 <p align="center">
-  <strong>The official website for MedPal – an AI-powered medical assistant.</strong>
+  <strong>The official website for Vitae, an AI-powered medical assistant.</strong>
 </p>
 
 <p align="center">
@@ -16,11 +16,11 @@
 
 ## 📖 Overview
 
-This repository contains the official website for **MedPal**, an AI-powered medical assistant designed to provide reliable, handbook-based medical assistance through modern artificial intelligence technologies.
+This repository contains the official website for **Vitae**, an AI-powered medical assistant designed to provide reliable, handbook-based medical assistance through modern artificial intelligence technologies.
 
 The website introduces the product, highlights its core capabilities, explains the underlying technology, and serves as the primary landing page for users, recruiters, collaborators, and healthcare professionals.
 
-> **Note:** This repository contains only the website. The MedPal AI application and backend are maintained separately.
+> **Note:** This repository contains only the website. The Vitae application and backend are maintained separately.
 
 ---
 
@@ -36,9 +36,9 @@ The website introduces the product, highlights its core capabilities, explains t
 
 ---
 
-## 🧠 About MedPal
+## 🧠 About Vitae
 
-MedPal is an AI-powered medical assistant built to deliver accurate, context-aware medical information while preserving privacy through offline AI technologies.
+Vitae is an AI-powered medical assistant built to deliver accurate, context-aware medical information while preserving privacy through offline AI technologies.
 
 Key capabilities include:
 
@@ -55,7 +55,7 @@ Key capabilities include:
 
 ## ⚙️ Technology
 
-The MedPal ecosystem incorporates modern AI technologies, including:
+The Vitae ecosystem incorporates modern AI technologies, including:
 
 * Local LLMs
 * Retrieval-Augmented Generation (RAG)
@@ -127,7 +127,7 @@ medpal-website-/
 
 ## 🎯 Purpose
 
-The MedPal website serves as the official online presence of the project by showcasing its vision, capabilities, technology stack, and user experience. It is intended to provide a clear introduction for potential users, recruiters, researchers, and collaborators.
+The Vitae website serves as the official online presence of the project by showcasing its vision, capabilities, technology stack, and user experience. It is intended to provide a clear introduction for potential users, recruiters, researchers, and collaborators.
 
 ---
 
