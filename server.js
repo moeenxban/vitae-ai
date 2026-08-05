@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n========================================================`);
-    console.log(`  MedPal Local Web Server Running!`);
+    console.log(`  Vitae Local Web Server Running!`);
     console.log(`========================================================\n`);
     console.log(`  PC Local:  http://127.0.0.1:${PORT}/`);
     console.log(`  Mobile:    http://192.168.1.2:${PORT}/`);
