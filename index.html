@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitae: AI Medical Assistant for Healthcare Professionals</title>
-    <meta name="description" content="Offline AI medical assistant trained on your textbooks. Speaks, listens, and runs 100% on your machine. No data leaves your computer.">
-    <meta property="og:title" content="Vitae: AI Medical Assistant">
-    <meta property="og:description" content="Offline AI assistant trained on your medical textbooks. Speaks, listens, 100% private.">
+    <title>Vitae 2.0 | Autonomous Medical AI & Clinical Simulation Platform</title>
+    <meta name="description" content="Offline, air-gapped AI medical assistant and simulation platform. Features autonomous bilingual patient intake, emergency triage simulation, faculty exam prep, and hospital command center.">
+    <meta property="og:title" content="Vitae 2.0 | Autonomous Medical AI & Clinical Simulation">
+    <meta property="og:description" content="100% offline, privacy-first AI platform for hospitals, universities, and clinicians. Zero cloud dependence, sub-second inference.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://moeenxban.github.io/medpal-website-/">
-    <meta property="og:image" content="https://moeenxban.github.io/medpal-website-/public/logo.png">
+    <meta property="og:image" content="public/logo.png">
     <link rel="icon" type="image/png" href="public/logo.png">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -18,10 +18,10 @@
         html { scroll-behavior: smooth; }
         body { background: #030712; color: #fff; overflow-x: hidden; }
         
-        /* 3D Background */
+        /* 3D Ambient Background */
         .bg-3d { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
-        .bg-3d::before { content: ''; position: absolute; top: 30%; left: 50%; width: 600px; height: 600px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%); animation: pulse-bg 8s ease-in-out infinite; }
-        .bg-3d::after { content: ''; position: absolute; top: 70%; right: 20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%); animation: pulse-bg 10s ease-in-out infinite reverse; }
+        .bg-3d::before { content: ''; position: absolute; top: 25%; left: 50%; width: 700px; height: 700px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%); animation: pulse-bg 9s ease-in-out infinite; }
+        .bg-3d::after { content: ''; position: absolute; top: 65%; right: 15%; width: 550px; height: 550px; background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%); animation: pulse-bg 11s ease-in-out infinite reverse; }
         @keyframes pulse-bg { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.15)} }
         
         .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px); background-size: 80px 80px; z-index: 0; pointer-events: none; }
@@ -30,48 +30,38 @@
         @keyframes pfloat { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{transform:translateY(-10vh) scale(1);opacity:0} }
         
         /* Animations */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         
         /* Components */
-        .glass { background: rgba(255,255,255,0.025); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
-        .gradient-text { background: linear-gradient(135deg,#60a5fa,#a78bfa,#34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .mockup-shadow { box-shadow: 0 30px 100px rgba(59,130,246,0.15), 0 0 0 1px rgba(255,255,255,0.05); }
-        .glow-line { height: 1px; background: linear-gradient(90deg,transparent,rgba(59,130,246,0.4),rgba(139,92,246,0.4),transparent); }
+        .glass { background: rgba(255,255,255,0.025); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass-card { background: linear-gradient(135deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); }
+        .gradient-text { background: linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .mockup-shadow { box-shadow: 0 35px 120px rgba(59,130,246,0.18), 0 0 0 1px rgba(255,255,255,0.08); }
+        .glow-line { height: 1px; background: linear-gradient(90deg,transparent,rgba(59,130,246,0.35),rgba(139,92,246,0.35),transparent); }
         
-        .card-hover { transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
-        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.25); }
+        .card-hover { transition: all 0.35s cubic-bezier(0.16,1,0.3,1); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(59,130,246,0.15); border-color: rgba(96,165,250,0.3); }
         
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-        .faq-answer.open { max-height: 500px; }
         .pulse-dot { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
         
-        /* Placeholder slots */
-        .placeholder-slot { background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08)); border: 2px dashed rgba(255,255,255,0.15); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; color: rgba(255,255,255,0.3); }
-        .placeholder-slot img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; border: none; }
+        /* Video Container & Frame */
+        .video-window { position: relative; border-radius: 20px; overflow: hidden; background: #0a0f1d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(59,130,246,0.15); }
+        .video-header { height: 38px; background: rgba(15,23,42,0.85); display: flex; align-items: center; px: 14px; padding: 0 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .video-dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+        .video-content video { width: 100%; height: auto; display: block; object-fit: cover; }
         
-        /* Coming Soon Ribbon */
-        .ribbon { position: absolute; top: 16px; right: -8px; background: linear-gradient(135deg,#8b5cf6,#a855f7); color: white; font-size: 11px; font-weight: 700; padding: 4px 16px 4px 12px; border-radius: 4px 0 0 4px; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 4px 15px rgba(139,92,246,0.4); }
-        .ribbon::after { content: ''; position: absolute; right: 0; bottom: -8px; border: 4px solid transparent; border-top-color: #6d28d9; border-right-color: #6d28d9; }
-        
-        /* Audio wave */
-        .wave-bar { width: 3px; background: #3b82f6; border-radius: 2px; animation: wave 1.2s ease-in-out infinite; }
-        .wave-bar:nth-child(2){animation-delay:0.1s} .wave-bar:nth-child(3){animation-delay:0.2s} .wave-bar:nth-child(4){animation-delay:0.3s} .wave-bar:nth-child(5){animation-delay:0.4s}
-        @keyframes wave { 0%,100%{height:8px} 50%{height:24px} }
+        /* Pills & Badges */
+        .badge-live { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+        .badge-tech { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: rgba(59,130,246,0.1); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+        .badge-urdu { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.2); }
         
         /* Tabs */
-        .tab-btn { transition: all 0.3s ease; }
-        .tab-btn.active { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(59,130,246,0.5); }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        
-        /* Chat demo */
-        .chat-bubble { opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
-        .chat-bubble.show { opacity: 1; transform: translateY(0); }
-        .typing-dots span { animation: blink 1.4s infinite; }
-        .typing-dots span:nth-child(2){animation-delay:0.2s} .typing-dots span:nth-child(3){animation-delay:0.4s}
-        @keyframes blink { 0%,100%{opacity:0.2} 20%{opacity:1} }
+        .tab-btn { transition: all 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .tab-btn.active { background: linear-gradient(135deg, rgba(59,130,246,0.25), rgba(139,92,246,0.25)) !important; color: #fff !important; border-color: rgba(96,165,250,0.6) !important; box-shadow: 0 0 25px rgba(59,130,246,0.3); }
+        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        .tab-content.active { display: block; opacity: 1; }
         
         /* Comparison table */
         .compare-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -80,11 +70,13 @@
         section { padding-top: 100px; padding-bottom: 100px; }
         @media(max-width:768px){ section{padding-top:60px;padding-bottom:60px;} }
         
-        @media(max-width:768px){ .mobile-hide{display:none} }
+        .logo-glow { filter: drop-shadow(0 0 12px rgba(59,130,246,0.4)) drop-shadow(0 5px 14px rgba(0,0,0,0.6)); transition: filter 0.3s ease, transform 0.3s ease; }
+        .logo-glow:hover { filter: drop-shadow(0 0 22px rgba(59,130,246,0.7)) drop-shadow(0 8px 22px rgba(0,0,0,0.75)); transform: scale(1.04); }
 
-        /* Logo 3D glow */
-        .logo-glow { filter: drop-shadow(0 0 10px rgba(59,130,246,0.35)) drop-shadow(0 5px 14px rgba(0,0,0,0.55)); transition: filter 0.3s ease, transform 0.3s ease; }
-        .logo-glow:hover { filter: drop-shadow(0 0 20px rgba(59,130,246,0.6)) drop-shadow(0 8px 20px rgba(0,0,0,0.65)); transform: scale(1.05); }
+        /* Specific logo size locks */
+        .nav-emblem { width: 44px !important; height: 44px !important; max-width: 44px !important; max-height: 44px !important; object-fit: contain; flex-shrink: 0; }
+        .table-emblem { width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; object-fit: contain; flex-shrink: 0; }
+        .footer-logo { height: 44px !important; width: auto !important; max-height: 44px !important; object-fit: contain; flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -92,23 +84,30 @@
     <div class="grid-bg"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Nav -->
+    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#" class="flex items-center group">
-                <img src="public/emblem.png" alt="Vitae" class="h-12 w-12 logo-glow rounded-xl">
-                </a>
-            <div class="hidden md:flex items-center gap-8 text-sm text-gray-400 font-medium">
-                <a href="#features" class="nav-link hover:text-white">Features</a>
-                <a href="#voice" class="nav-link hover:text-white">Voice</a>
-                <a href="#demo" class="nav-link hover:text-white">Demo</a>
-                <a href="#knowledge" class="nav-link hover:text-white">Knowledge Base</a>
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="public/emblem.png" alt="Vitae" class="nav-emblem logo-glow rounded-xl" width="44" height="44">
+                <span class="font-brand font-black text-2xl tracking-tight text-white flex items-center">
+                    Vitae <span class="text-xs ml-2 px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 font-semibold border border-blue-500/30">2.0</span>
+                </span>
+            </a>
+            <div class="hidden lg:flex items-center gap-7 text-sm text-gray-400 font-medium">
+                <a href="#pillars" class="nav-link hover:text-white">Clinical Pillars</a>
+                <a href="#triage-command" class="nav-link hover:text-white">Command Center</a>
+                <a href="#localization" class="nav-link hover:text-white">Bilingual Engine</a>
+                <a href="#demo" class="nav-link hover:text-white">Live Intake Demo</a>
+                <a href="#architecture" class="nav-link hover:text-white">Air-Gapped RAG</a>
                 <a href="#compare" class="nav-link hover:text-white">Why Vitae</a>
                 <a href="#faq" class="nav-link hover:text-white">FAQ</a>
             </div>
             <div class="flex items-center gap-3">
-                <a href="#contact" class="hidden sm:inline-block bg-white text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-200 transition btn-white-glow">Get Started</a>
-                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-xl bg-white/5 border border-white/10" aria-label="Toggle Navigation Menu">
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-200 transition btn-white-glow">
+                    <span>Schedule Demo</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-xl bg-white/5 border border-white/10" aria-label="Toggle Navigation Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -119,88 +118,125 @@
 
     <!-- Mobile Drawer Overlay -->
     <div id="mobile-menu" class="fixed inset-0 bg-[#030712]/95 backdrop-blur-3xl z-50 flex flex-col justify-between px-6 py-6 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
-        <!-- Ambient Glow Backdrops -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-10 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <!-- Top Header Bar -->
         <div class="flex items-center justify-between relative z-10 w-full pb-6 border-b border-white/10">
-            <a href="#" onclick="toggleMobileMenu()" class="flex items-center group">
-                <img src="public/emblem.png" alt="Vitae" class="h-11 w-11 logo-glow rounded-xl">
+            <a href="#" onclick="toggleMobileMenu()" class="flex items-center gap-3">
+                <img src="public/emblem.png" alt="Vitae" class="nav-emblem logo-glow rounded-xl" width="40" height="40">
+                <span class="font-brand font-black text-xl text-white">Vitae 2.0</span>
             </a>
             <button onclick="toggleMobileMenu()" class="text-gray-400 hover:text-white p-2.5 rounded-xl bg-white/5 border border-white/10 transition active:scale-95" aria-label="Close Navigation Menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
 
-        <!-- Menu Links Group -->
         <div class="flex flex-col gap-3 relative z-10 my-auto py-6 max-w-md mx-auto w-full">
-            <a href="#features" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition group">
-                <span>Features</span>
-                <svg class="w-4 h-4 text-gray-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="#pillars" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition">
+                <span>Clinical Pillars (4 Modes)</span>
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="#voice" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition group">
-                <span>Voice Assistant</span>
-                <svg class="w-4 h-4 text-gray-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="#triage-command" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition">
+                <span>Doctor Command Center</span>
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="#demo" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition group">
-                <span>Interactive Demo</span>
-                <svg class="w-4 h-4 text-gray-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="#localization" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition">
+                <span>Bilingual Engine (Urdu/English)</span>
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="#knowledge" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition group">
-                <span>Knowledge Base</span>
-                <svg class="w-4 h-4 text-gray-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="#demo" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition">
+                <span>Live Intake Demo</span>
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="#compare" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition group">
-                <span>Why Vitae</span>
-                <svg class="w-4 h-4 text-gray-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="#architecture" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition">
+                <span>Air-Gapped RAG Architecture</span>
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition group">
-                <span>FAQ</span>
-                <svg class="w-4 h-4 text-gray-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="#compare" onclick="toggleMobileMenu()" class="w-full py-3.5 px-5 rounded-2xl glass border border-white/10 hover:border-blue-500/40 text-gray-200 hover:text-white font-heading font-semibold text-base flex items-center justify-between transition">
+                <span>Why Vitae vs Cloud AI</span>
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="w-full py-4 px-6 rounded-2xl bg-white text-black font-heading font-bold text-base text-center btn-white-glow mt-2 transition active:scale-98">
-                Get Started: Free Trial
+            <a href="#contact" onclick="toggleMobileMenu()" class="w-full py-4 px-6 rounded-2xl bg-white text-black font-heading font-bold text-base text-center btn-white-glow mt-3 transition">
+                Schedule Institutional Pilot
             </a>
         </div>
 
-        <!-- Footer Info -->
-        <div class="relative z-10 pt-6 border-t border-white/10 text-center max-w-md mx-auto w-full">
-            <p class="text-xs text-gray-500 font-heading">100% Offline Medical AI Assistant • Privacy-First</p>
+        <div class="relative z-10 pt-4 border-t border-white/10 text-center max-w-md mx-auto w-full">
+            <p class="text-xs text-gray-500 font-heading">100% Offline Medical Intelligence • Zero Cloud Leakage</p>
         </div>
     </div>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="min-h-screen relative z-10 flex items-center">
-        <div class="max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div class="fade-in inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-8 border border-blue-500/20">
-                        <span class="w-2 h-2 bg-green-400 rounded-full pulse-dot"></span>
-                        🩺 100% Offline & Private Medical AI
+        <div class="max-w-7xl mx-auto px-6 pt-32 pb-16 w-full">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Left Copy -->
+                <div class="lg:col-span-6">
+                    <div class="fade-in inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-blue-500/20">
+                        <span class="w-2 h-2 bg-emerald-400 rounded-full pulse-dot"></span>
+                        <span>100% Air-Gapped Medical AI • Zero Cloud Latency</span>
                     </div>
-                    <h1 class="fade-in text-5xl md:text-7xl font-black leading-[1.08] mb-6 tracking-tight font-heading">
-                        Your Personal<br><span class="gradient-text">AI Doctor</span><br>Assistant
+                    <h1 class="fade-in text-4xl sm:text-6xl lg:text-6xl font-black leading-[1.08] mb-6 tracking-tight font-heading">
+                        Autonomous Clinical AI for <span class="gradient-text">Hospital Intake & Simulation</span>
                     </h1>
-                    <p class="fade-in text-lg text-gray-400 mb-10 leading-relaxed max-w-lg">
-                        An offline, RAG-powered AI medical assistant trained directly on your textbooks. Speaks, listens, and runs 100% locally on your machine with total data privacy.
+                    <p class="fade-in text-base sm:text-lg text-gray-300 mb-8 leading-relaxed">
+                        Vitae 2.0 empowers hospitals and medical schools with an on-premise, voice-enabled intelligence layer. From autonomous bilingual patient intake and emergency triage to high-stakes ICU simulation and board exams—completely offline with guaranteed patient privacy.
                     </p>
-                    <div class="fade-in flex gap-4 flex-wrap mb-12">
-                        <a href="#contact" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition btn-white-glow">Start Free Trial</a>
-                        <a href="#demo" class="border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/5 transition btn-glow">See Demo</a>
+                    <div class="fade-in flex flex-wrap gap-4 mb-10">
+                        <a href="#contact" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition btn-white-glow flex items-center gap-2">
+                            <span>Request On-Premise Pilot</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="#hero-video-anchor" onclick="switchHeroVideo('simulator')" class="border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/5 transition flex items-center gap-2">
+                            <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                            <span>Watch Live Video</span>
+                        </a>
                     </div>
-                    <div class="fade-in flex items-center gap-3 bg-blue-500/5 border border-blue-500/10 rounded-2xl px-5 py-4 max-w-md">
-                        <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                        <span class="text-sm text-gray-300"><strong class="text-white">100% Private & Offline.</strong> Zero patient data ever leaves your device.</span>
+                    <div class="fade-in grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                        <div>
+                            <div class="text-2xl font-black text-white font-brand">0.00 ms</div>
+                            <div class="text-xs text-gray-400">Cloud API Latency</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-black text-white font-brand">100%</div>
+                            <div class="text-xs text-gray-400">HIPAA Compliant</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-black text-white font-brand">EN + UR</div>
+                            <div class="text-xs text-gray-400">Bilingual Support</div>
+                        </div>
                     </div>
                 </div>
-                <div class="fade-in hidden lg:block relative">
-                    <div class="absolute -inset-10 bg-blue-500/10 rounded-3xl blur-3xl"></div>
-                    <div class="relative mockup-shadow rounded-3xl overflow-hidden border border-white/10">
-                        <picture>
-                            <source srcset="gui.webp" type="image/webp">
-                            <img src="gui.jpeg" alt="Vitae Desktop App: showing chat interface with 3D avatar assistant" class="w-full" width="1280" height="800" loading="eager" decoding="async">
-                        </picture>
+
+                <!-- Hero Right: Live Video Showcase Desktop Mockup -->
+                <div class="lg:col-span-6 fade-in" id="hero-video-anchor">
+                    <div class="video-window mockup-shadow">
+                        <div class="video-header justify-between">
+                            <div class="flex items-center">
+                                <span class="video-dot bg-red-500/80"></span>
+                                <span class="video-dot bg-yellow-500/80"></span>
+                                <span class="video-dot bg-emerald-500/80"></span>
+                                <span id="hero-window-address" class="text-xs text-gray-400 font-mono ml-2">vitae://simulator/icu-chamber-live</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="badge-live">● Live Motion</span>
+                            </div>
+                        </div>
+                        <div class="video-content bg-slate-950 aspect-[16/10] relative overflow-hidden flex items-center justify-center">
+                            <video id="hero-video-player" autoplay loop muted playsinline class="w-full h-full object-cover">
+                                <source src="public/videos/simulator-preview.mp4" type="video/mp4">
+                                Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                        <!-- Video Switcher Controls -->
+                        <div class="p-3 bg-slate-900/90 border-t border-white/10 flex flex-wrap gap-2 justify-center text-xs">
+                            <button onclick="switchHeroVideo('simulator')" id="btn-hero-sim" class="px-3.5 py-1.5 rounded-lg bg-blue-600/30 border border-blue-500/50 text-white font-medium hover:bg-blue-600/50 transition">
+                                🚨 Emergency Simulator
+                            </button>
+                            <button onclick="switchHeroVideo('scribe')" id="btn-hero-scribe" class="px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition">
+                                🩺 Autonomous Intake Kiosk
+                            </button>
+                            <button onclick="switchHeroVideo('tutor')" id="btn-hero-tutor" class="px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition">
+                                📚 Socratic Medical Tutor
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -209,92 +245,257 @@
 
     <div class="glow-line relative z-10"></div>
 
-    <!-- Features -->
-    <section id="features" class="relative z-10">
+    <!-- Institutional Trust Row -->
+    <section class="py-12 relative z-10 bg-slate-950/60 border-y border-white/5">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <div class="fade-in inline-block bg-blue-500/10 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-blue-500/20">Powerful Features</div>
-                <h2 class="fade-in text-4xl md:text-5xl font-black mb-6 font-heading">Three Modes, <span class="gradient-text">One Platform</span></h2>
-                <p class="fade-in text-gray-400 max-w-2xl mx-auto text-lg">Adapt Vitae to your exact clinical workflow—whether assisting in patient intake, teaching medical trainees, or simulating clinical cases.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="fade-in">
+                    <div class="text-3xl font-extrabold gradient-text mb-1">Air-Gapped</div>
+                    <div class="text-sm text-gray-400">Zero Internet or External API Required</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-3xl font-extrabold gradient-text mb-1">SOCRATES</div>
+                    <div class="text-sm text-gray-400">Clinical Pain Assessment Protocol</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-3xl font-extrabold gradient-text mb-1">1-Click PDF</div>
+                    <div class="text-sm text-gray-400">Instant Clinical Discharge Summaries</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-3xl font-extrabold gradient-text mb-1">Urdu & English</div>
+                    <div class="text-sm text-gray-400">Native RTL Speech & Diagnostic Dialogue</div>
+                </div>
             </div>
-            
-            <div class="fade-in flex justify-center gap-2 mb-12">
-                <button class="tab-btn active px-6 py-2.5 rounded-full text-sm font-medium border border-white/10 text-gray-400" onclick="switchTab('doctor', event)">Doctor Mode</button>
-                <button class="tab-btn px-6 py-2.5 rounded-full text-sm font-medium border border-white/10 text-gray-400" onclick="switchTab('professor', event)">Professor Mode</button>
-                <button class="tab-btn px-6 py-2.5 rounded-full text-sm font-medium border border-white/10 text-gray-400" onclick="switchTab('patient', event)">Patient Mode</button>
+        </div>
+    </section>
+
+    <!-- The 4 Enterprise Clinical Pillars -->
+    <section id="pillars" class="relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <div class="fade-in inline-block bg-blue-500/10 text-blue-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-blue-500/20">
+                    Comprehensive Clinical Architecture
+                </div>
+                <h2 class="fade-in text-3xl sm:text-5xl font-black mb-4 font-heading">
+                    Four Clinical Pillars, <span class="gradient-text">One Unified Engine</span>
+                </h2>
+                <p class="fade-in text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+                    Engineered to replace fragmented hospital and academic tools with an integrated offline intelligence suite.
+                </p>
             </div>
-            
-            <!-- Doctor Tab -->
-            <div id="tab-doctor" class="tab-content active">
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="glass rounded-3xl p-8">
-                        <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+
+            <!-- Tab Buttons -->
+            <div class="fade-in flex flex-wrap justify-center gap-3 mb-12">
+                <button class="tab-btn active px-6 py-3 rounded-full text-sm font-semibold border border-white/10 text-gray-400 flex items-center gap-2" onclick="switchPillarTab('kiosk', event)">
+                    <span>🩺 Patient Kiosk (Intake Scribe)</span>
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border border-white/10 text-gray-400 flex items-center gap-2" onclick="switchPillarTab('simulator', event)">
+                    <span>🚨 Diagnostic Emergency Simulator</span>
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border border-white/10 text-gray-400 flex items-center gap-2" onclick="switchPillarTab('command', event)">
+                    <span>📋 Doctor Command Center</span>
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full text-sm font-semibold border border-white/10 text-gray-400 flex items-center gap-2" onclick="switchPillarTab('faculty', event)">
+                    <span>🎓 Faculty Academic Suite</span>
+                </button>
+            </div>
+
+            <!-- Tab 1: Patient Kiosk & Scribe -->
+            <div id="pillar-kiosk" class="tab-content active">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-8 border border-white/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-2xl flex items-center justify-center border border-blue-500/30">
+                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-white">Autonomous Patient Kiosk</h3>
+                                <p class="text-xs text-blue-400">Intelligent Waiting Room Triage & Medical Scribe</p>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 font-heading">Doctor Mode</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Automated clinical intake assistant. Conducts SOCRATES-grounded pain assessments, gathers structured medical history, and generates comprehensive clinical summaries.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-blue-500/20"><svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div><span class="text-sm text-gray-300">Automated patient intake</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-blue-500/20"><svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><span class="text-sm text-gray-300">SOCRATES pain assessment</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-blue-500/20"><svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><span class="text-sm text-gray-300">Clinical summary generation</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-blue-500/20"><svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div><span class="text-sm text-gray-300">Clinical advice & red flags</span></div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Eliminate manual paper intake. Vitae interviews incoming patients in natural spoken English or Urdu, conducts an exhaustive SOCRATES pain interrogation, logs live vitals, and flags critical red-flag emergencies before the physician enters the exam room.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Full SOCRATES Protocol:</strong> Site, Onset, Character, Radiation, Associations, Timing, Exacerbating factors, Severity (1-10)</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Vitals Capture:</strong> Blood Pressure, Heart Rate, Respiration Rate, SpO2, Temperature</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Red-Flag Interception:</strong> Automatic warning banners for acute coronary, stroke, and septic distress</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="mode-img-container">
-                        <picture class="w-full h-full block">
-                            <source srcset="gui.webp" type="image/webp">
-                            <img src="gui.jpeg" alt="Doctor Mode: clinical intake conversation screenshot showing SOCRATES-based questions" width="1280" height="800" loading="lazy" decoding="async">
-                        </picture>
+                    <div class="lg:col-span-7">
+                        <div class="video-window mockup-shadow">
+                            <div class="video-header justify-between">
+                                <div class="flex items-center">
+                                    <span class="video-dot bg-red-500/80"></span>
+                                    <span class="video-dot bg-yellow-500/80"></span>
+                                    <span class="video-dot bg-emerald-500/80"></span>
+                                    <span class="text-xs text-gray-400 font-mono ml-2">patient-kiosk.app/vitals-and-intake</span>
+                                </div>
+                                <span class="badge-tech">Bilingual Voice Intake</span>
+                            </div>
+                            <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                                <img src="public/images/04_patient_kiosk_vitals.png" alt="Patient Kiosk Vitals Screen" class="w-full h-full object-cover">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Professor Tab -->
-            <div id="tab-professor" class="tab-content">
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="glass rounded-3xl p-8">
-                        <div class="w-14 h-14 bg-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+
+            <!-- Tab 2: Diagnostic Emergency Simulator -->
+            <div id="pillar-simulator" class="tab-content">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-8 border border-white/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-red-600/20 rounded-2xl flex items-center justify-center border border-red-500/30">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-white">Emergency Simulator</h3>
+                                <p class="text-xs text-red-400">High-Stakes Golden Hour Clinical Training</p>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 font-heading">Professor Mode</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Interactive AI medical tutor. Simplifies complex pathophysiological concepts, generates custom clinical case studies, and quizzes learners directly from medical handbooks.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/20"><svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><span class="text-sm text-gray-300">Clinical concept explanations</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/20"><svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><span class="text-sm text-gray-300">Case study generation</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/20"><svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><span class="text-sm text-gray-300">Interactive quiz questions</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/20"><svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><span class="text-sm text-gray-300">Handbook-based teaching</span></div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Train residents and medical students on volatile ICU and emergency scenarios. Features a dynamic physiological deterioration engine that reacts to student decisions, accompanied by a 15-minute Golden Hour countdown and post-case SOCRATES grading.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Dynamic Golden Hour Timer:</strong> Simulates authentic emergency department pressure with live vital telemetry</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>4 Core Specialties:</strong> Acute Cardiology, Polytrauma, Toxicology, and Emergency Neurology</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Objective Scoring:</strong> Automated clinical debriefing assessing diagnostic accuracy, time-to-treatment, and bedside communication</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="mode-img-container">
-                        <picture class="w-full h-full block">
-                            <source srcset="professor_mode.webp" type="image/webp">
-                            <img src="professor_mode.jpeg" alt="Professor Mode: medical tutoring conversation screenshot showing case study generation" width="1280" height="800" loading="lazy" decoding="async">
-                        </picture>
+                    <div class="lg:col-span-7">
+                        <div class="video-window mockup-shadow">
+                            <div class="video-header justify-between">
+                                <div class="flex items-center">
+                                    <span class="video-dot bg-red-500/80"></span>
+                                    <span class="video-dot bg-yellow-500/80"></span>
+                                    <span class="video-dot bg-emerald-500/80"></span>
+                                    <span class="text-xs text-gray-400 font-mono ml-2">simulator.app/icu-chamber-live</span>
+                                </div>
+                                <span class="badge-live">Telemetry Monitor Active</span>
+                            </div>
+                            <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                                <img src="public/images/08_diagnostic_simulator.png" alt="Emergency Simulator Room with Golden Hour Timer" class="w-full h-full object-cover">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Patient Tab -->
-            <div id="tab-patient" class="tab-content">
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="glass rounded-3xl p-8">
-                        <div class="w-14 h-14 bg-green-600 rounded-2xl flex items-center justify-center mb-6">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+
+            <!-- Tab 3: Doctor Command Center -->
+            <div id="pillar-command" class="tab-content">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-8 border border-white/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-emerald-600/20 rounded-2xl flex items-center justify-center border border-emerald-500/30">
+                                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-white">Doctor Command Center</h3>
+                                <p class="text-xs text-emerald-400">Hospital Triage Dashboard & Records</p>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 font-heading">Patient Mode</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Realistic patient simulator for diagnostic practice. Simulates authentic symptom histories and natural dialogue to help medical trainees refine bedside clinical skills.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-green-500/20"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><span class="text-sm text-gray-300">Realistic symptom responses</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-green-500/20"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><span class="text-sm text-gray-300">Natural language dialogue</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-green-500/20"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div><span class="text-sm text-gray-300">Consistent medical history</span></div>
-                            <div class="glass rounded-xl p-4 flex items-center gap-3"><div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-green-500/20"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><span class="text-sm text-gray-300">Practice communication skills</span></div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Give attending physicians a real-time command dashboard of every patient in the ward. Automatically stratifies triage urgency (Resuscitation, Emergent, Urgent, Non-Urgent) and offers 1-click PDF clinical export for existing EHR systems.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Triage Urgency Sorting:</strong> Color-coded severity tiers allow immediate prioritization of critical cases</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Deep Patient Drawer:</strong> Inspect complete transcripts, vitals charts, and clinical summaries in one slide-out</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>1-Click PDF Export:</strong> Clean, professional printable intake records ready for patient charts</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="mode-img-container">
-                        <picture class="w-full h-full block">
-                            <source srcset="patient_mode.webp" type="image/webp">
-                            <img src="patient_mode.jpeg" alt="Patient Mode: patient simulation conversation screenshot showing realistic symptom responses" width="1280" height="800" loading="lazy" decoding="async">
-                        </picture>
+                    <div class="lg:col-span-7">
+                        <div class="video-window mockup-shadow">
+                            <div class="video-header justify-between">
+                                <div class="flex items-center">
+                                    <span class="video-dot bg-red-500/80"></span>
+                                    <span class="video-dot bg-yellow-500/80"></span>
+                                    <span class="video-dot bg-emerald-500/80"></span>
+                                    <span class="text-xs text-gray-400 font-mono ml-2">command-center.app/triage-matrix</span>
+                                </div>
+                                <span class="badge-tech">Hospital Ward Active</span>
+                            </div>
+                            <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                                <img src="public/images/09_command_center_triage_dashboard.png" alt="Command Center Triage Dashboard" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Faculty Academic Suite -->
+            <div id="pillar-faculty" class="tab-content">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-8 border border-white/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-purple-600/20 rounded-2xl flex items-center justify-center border border-purple-500/30">
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-heading text-white">Faculty Academic Suite</h3>
+                                <p class="text-xs text-purple-400">Curriculum-Grounded Medical Tutor & Exam Engine</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Transform official institutional medical handbooks into interactive teaching tools. Faculty members can instantly generate 4-option clinical MCQ vignette examinations with instant rationale citations, or set trainees loose on a Socratic clinical tutor.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Handbook Grounded:</strong> Ingest any textbook or specialty guideline via PDF—responses cite specific chapters</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>MCQ Exam Mode:</strong> USMLE/FCPS-style case scenarios with rationale and distractor explanations</span>
+                            </div>
+                            <div class="glass rounded-xl p-3.5 flex items-center gap-3 border border-white/5">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">✓</div>
+                                <span class="text-xs sm:text-sm text-gray-200"><strong>Case Study Generator:</strong> Create unlimited rare disease and pathology vignettes for student rounds</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <div class="video-window mockup-shadow">
+                            <div class="video-header justify-between">
+                                <div class="flex items-center">
+                                    <span class="video-dot bg-red-500/80"></span>
+                                    <span class="video-dot bg-yellow-500/80"></span>
+                                    <span class="video-dot bg-emerald-500/80"></span>
+                                    <span class="text-xs text-gray-400 font-mono ml-2">faculty-suite.app/mcq-board-exam</span>
+                                </div>
+                                <span class="badge-tech">Academic Mode</span>
+                            </div>
+                            <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                                <img src="public/images/07_faculty_suite_mcq_mode.png" alt="Faculty Suite MCQ Exam Mode" class="w-full h-full object-cover">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -303,27 +504,164 @@
 
     <div class="glow-line relative z-10"></div>
 
-    <!-- Voice Section -->
+    <!-- Spotlight: Hospital Command Center & Triage -->
+    <section id="triage-command" class="relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-white/10 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6">
+                        <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-emerald-500/20">
+                            Enterprise Clinical Operations
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-black mb-6 font-heading">
+                            Real-Time Supervision with the <span class="gradient-text">Doctor Command Center</span>
+                        </h2>
+                        <p class="text-gray-300 text-base leading-relaxed mb-6">
+                            In high-throughput clinics and emergency departments, clinicians cannot afford to spend minutes transcribing patient histories. The Vitae Command Center centralizes incoming intake data across kiosks, tracks active student diagnostic simulations, and maintains a searchable repository of medical records.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                                <div class="text-lg font-bold text-white mb-1">Instant Drawer Drilldown</div>
+                                <p class="text-xs text-gray-400">View complete transcripts, SOCRATES pain breakdown, and vital telemetry without page reloads.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                                <div class="text-lg font-bold text-white mb-1">EMR-Ready Export</div>
+                                <p class="text-xs text-gray-400">One-click formatted print summary with clinic headers, physician signature lines, and ICD-10 notes.</p>
+                            </div>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center gap-2 bg-emerald-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-emerald-400 transition">
+                            <span>Request Command Center Demo</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <div class="video-window mockup-shadow">
+                            <div class="video-header justify-between">
+                                <div class="flex items-center">
+                                    <span class="video-dot bg-red-500/80"></span>
+                                    <span class="video-dot bg-yellow-500/80"></span>
+                                    <span class="video-dot bg-emerald-500/80"></span>
+                                    <span class="text-xs text-gray-400 font-mono ml-2">patient-drawer-inspection.view</span>
+                                </div>
+                                <span class="badge-live">Live Patient File</span>
+                            </div>
+                            <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                                <img src="public/images/10_command_center_patient_drawer.png" alt="Patient Record Inspection Drawer" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-line relative z-10"></div>
+
+    <!-- Spotlight: Bilingual English & Urdu Engine -->
+    <section id="localization" class="relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="video-window mockup-shadow">
+                        <div class="video-header justify-between">
+                            <div class="flex items-center">
+                                <span class="video-dot bg-red-500/80"></span>
+                                <span class="video-dot bg-yellow-500/80"></span>
+                                <span class="video-dot bg-emerald-500/80"></span>
+                                <span class="text-xs text-gray-400 font-mono ml-2">vitae.app/main-hub?lang=ur</span>
+                            </div>
+                            <span class="badge-urdu">اردو مینیو فعال ہے</span>
+                        </div>
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                            <img src="public/images/03_main_hub_urdu_rtl.png" alt="Vitae Urdu RTL Interface" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-6 order-1 lg:order-2">
+                    <div class="inline-flex items-center gap-2 bg-purple-500/10 text-purple-400 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 border border-purple-500/20">
+                        First-in-Class Regional Localization
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-black mb-6 font-heading">
+                        Native <span class="gradient-text">Urdu & English</span> Clinical Intelligence
+                    </h2>
+                    <p class="text-gray-300 text-base leading-relaxed mb-6">
+                        Bridging the linguistic divide in healthcare intake. Vitae 2.0 provides true bidirectional Right-to-Left (RTL) interface rendering, Perso-Arabic medical script validation, and natural spoken Urdu conversational models to serve diverse patient demographics without translation friction.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="glass rounded-2xl p-4 flex items-start gap-4 border border-white/5">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0 font-bold">RTL</div>
+                            <div>
+                                <div class="font-bold text-white text-sm">Full Right-to-Left (RTL) Layout</div>
+                                <div class="text-xs text-gray-400 mt-1">Automatic orientation switch across cards, navigation bars, vital telemetry, and conversational bubbles.</div>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl p-4 flex items-start gap-4 border border-white/5">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0 font-bold">صحیح</div>
+                            <div>
+                                <div class="font-bold text-white text-sm">Urdu Medical Name & Symptom Parsing</div>
+                                <div class="text-xs text-gray-400 mt-1">Accurately captures indigenous symptom expressions (e.g., چھاتی میں درد، سانس پھولنا) directly into the diagnostic engine.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-line relative z-10"></div>
+
+    <!-- Voice AI & Conversational Avatar -->
     <section id="voice" class="relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <div class="fade-in inline-block bg-blue-500/10 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-blue-500/20">Voice AI</div>
-                    <h2 class="fade-in text-4xl md:text-5xl font-black mb-6 font-heading">Maya <span class="gradient-text">Speaks</span> and <span class="gradient-text">Listens</span></h2>
-                    <p class="fade-in text-gray-400 text-lg mb-8 leading-relaxed">Interact naturally through hands-free voice dialogue. Maya speaks fluent, handbook-grounded medical advice and listens directly to your spoken clinical queries.</p>
-                    <div class="fade-in grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-blue-500/20"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg></div><div><div class="font-semibold text-white text-sm">Text-to-Speech</div><div class="text-xs text-gray-500">Natural voice output</div></div></div>
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-purple-500/20"><svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div><div><div class="font-semibold text-white text-sm">Speech-to-Text</div><div class="text-xs text-gray-500">Speak your questions</div></div></div>
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-green-500/20"><svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div><div class="font-semibold text-white text-sm">Real-time Response</div><div class="text-xs text-gray-500">Instant voice feedback</div></div></div>
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-orange-500/20"><svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div><div><div class="font-semibold text-white text-sm">Personalized 3D Avatar</div><div class="text-xs text-gray-500">Free custom 3D avatar included</div></div></div>
+                    <div class="inline-block bg-blue-500/10 text-blue-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-blue-500/20">
+                        Hands-Free Voice AI
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 font-heading">
+                        Spoken Clinical Dialogue with <span class="gradient-text">Synchronized Avatar</span>
+                    </h2>
+                    <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        Patients in distress often cannot type on keyboards. Vitae features high-fidelity speech-to-text and handbook-grounded text-to-speech with animated lip-synchronization, creating a calming, empathetic clinical persona.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="glass rounded-xl p-5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Sub-Second TTS Voice</div>
+                            <div class="text-xs text-gray-400">Natural medical phrasing without mechanical robotic cadence.</div>
+                        </div>
+                        <div class="glass rounded-xl p-5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Noise-Robust STT</div>
+                            <div class="text-xs text-gray-400">Understands clinical terminology even in busy ER and triage hallways.</div>
+                        </div>
+                        <div class="glass rounded-xl p-5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Synchronized 3D Avatar</div>
+                            <div class="text-xs text-gray-400">Real-time lip-synced facial gestures for increased patient compliance.</div>
+                        </div>
+                        <div class="glass rounded-xl p-5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Hands-Free Examination</div>
+                            <div class="text-xs text-gray-400">Clinicians can dictate clinical impressions completely unencumbered.</div>
+                        </div>
                     </div>
                 </div>
-                <div class="fade-in relative">
-                    <div class="placeholder-slot" style="min-height:360px; border-radius: 24px;">
-                        <picture>
-                            <source srcset="gui.webp" type="image/webp">
-                            <img src="gui.jpeg" alt="Maya Voice AI: showing text-to-speech and speech-to-text interface with audio wave visualization" width="1280" height="800" loading="lazy" decoding="async">
-                        </picture>
+                <div class="relative">
+                    <div class="video-window mockup-shadow">
+                        <div class="video-header justify-between">
+                            <div class="flex items-center">
+                                <span class="video-dot bg-red-500/80"></span>
+                                <span class="video-dot bg-yellow-500/80"></span>
+                                <span class="video-dot bg-emerald-500/80"></span>
+                                <span class="text-xs text-gray-400 font-mono ml-2">avatar-voice-speech.mp4</span>
+                            </div>
+                            <span class="badge-live">Avatar Synthesizer</span>
+                        </div>
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-900 flex items-center justify-center">
+                            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                                <source src="public/videos/speaking.mp4" type="video/mp4">
+                                <source src="public/videos/idle.mp4" type="video/mp4">
+                                Your browser does not support HTML5 video.
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -332,25 +670,37 @@
 
     <div class="glow-line relative z-10"></div>
 
-    <!-- Interactive Demo -->
+    <!-- Live Interactive Intake Demo -->
     <section id="demo" class="relative z-10">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <div class="fade-in inline-block bg-purple-500/10 text-purple-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-purple-500/20">Interactive Demo</div>
-                <h2 class="fade-in text-4xl md:text-5xl font-black mb-4 font-heading">See Maya <span class="gradient-text">In Action</span></h2>
-                <p class="fade-in text-gray-400 max-w-xl mx-auto text-base">Experience a live simulation of Doctor Mode conducting a real-time SOCRATES emergency patient intake conversation.</p>
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <div class="inline-block bg-purple-500/10 text-purple-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-purple-500/20">
+                    Real-Time Simulation
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-black mb-4 font-heading">
+                    Experience an <span class="gradient-text">Acute Intake Assessment</span>
+                </h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-base">
+                    Click below to observe how Vitae guides a chest pain patient through a strict SOCRATES protocol while detecting emergency cardiac red flags.
+                </p>
             </div>
-            <div class="fade-in glass rounded-3xl p-6">
-                <div class="bg-gray-900 rounded-2xl overflow-hidden">
-                    <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span class="ml-3 text-xs text-gray-500">Doctor Mode: Patient Intake</span>
+            <div class="glass rounded-3xl p-6 border border-white/10">
+                <div class="bg-gray-950 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-slate-900/60">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-3 text-xs text-gray-400 font-mono">SOCRATES Triage Interrogation (Active)</span>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded bg-red-500/20 text-red-400 font-semibold border border-red-500/30">Cardiac Flag</span>
                     </div>
-                    <div id="chat-demo" class="p-5 space-y-4 min-h-[300px]"></div>
-                    <div class="px-5 pb-5">
-                        <button onclick="startDemo()" id="demo-btn" class="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition">Play Demo Conversation</button>
+                    <div id="chat-demo" class="p-6 space-y-4 min-h-[320px] max-h-[420px] overflow-y-auto"></div>
+                    <div class="p-5 border-t border-white/10 bg-slate-900/40">
+                        <button onclick="startDemo()" id="demo-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3.5 rounded-xl font-semibold transition flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Simulate Triage Conversation</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -359,28 +709,53 @@
 
     <div class="glow-line relative z-10"></div>
 
-    <!-- Knowledge Base -->
-    <section id="knowledge" class="relative z-10">
+    <!-- Air-Gapped Architecture & Knowledge Base -->
+    <section id="architecture" class="relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="fade-in order-2 lg:order-1">
-                    <div class="inline-block bg-orange-500/10 text-orange-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-orange-500/20">Your Knowledge, Your AI</div>
-                    <h2 class="text-4xl md:text-5xl font-black mb-6 font-heading">Train Maya on <span class="gradient-text">Your Textbooks</span></h2>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">Upload any medical textbook, clinical guideline, or reference manual in PDF format. We build a dedicated local vector knowledge base tailored to your exact specialty.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-orange-500/20"><svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><div><div class="font-semibold text-white text-sm">Send us any textbook</div><div class="text-xs text-gray-500">PDF format, any specialty</div></div></div>
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-orange-500/20"><svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg></div><div><div class="font-semibold text-white text-sm">Local vector storage</div><div class="text-xs text-gray-500">On your machine, not cloud</div></div></div>
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-orange-500/20"><svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div><div><div class="font-semibold text-white text-sm">AI from YOUR books</div><div class="text-xs text-gray-500">Not generic AI</div></div></div>
-                        <div class="glass rounded-xl p-5 flex items-center gap-4 card-hover"><div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-orange-500/20"><svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div><div><div class="font-semibold text-white text-sm">Add more anytime</div><div class="text-xs text-gray-500">Your AI keeps learning</div></div></div>
+                <div>
+                    <div class="inline-block bg-orange-500/10 text-orange-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-orange-500/20">
+                        On-Premise Engineering
                     </div>
-                    <a href="#contact" class="inline-block bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/30 transition">Get Your Custom AI</a>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 font-heading">
+                        Zero Hallucinations. <span class="gradient-text">100% Literature Grounded.</span>
+                    </h2>
+                    <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        Public cloud models hallucinate dosages and fabricate citations. Vitae uses an on-device Retrieval-Augmented Generation (RAG) pipeline backed by local FAISS vector stores, answering strictly from your ingested textbooks, clinical guidelines, and hospital formularies.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="glass rounded-xl p-5 border border-white/5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Local PDF Ingestion</div>
+                            <div class="text-xs text-gray-400">Ingest specialty surgery manuals, pharmacopeias, or university curricula in minutes.</div>
+                        </div>
+                        <div class="glass rounded-xl p-5 border border-white/5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Zero Cloud Exposure</div>
+                            <div class="text-xs text-gray-400">No medical data is ever uploaded to external servers or used to train third-party models.</div>
+                        </div>
+                        <div class="glass rounded-xl p-5 border border-white/5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Exact Citation Footnotes</div>
+                            <div class="text-xs text-gray-400">Every diagnostic suggestion and tutor quiz question points to specific textbook chapters.</div>
+                        </div>
+                        <div class="glass rounded-xl p-5 border border-white/5 card-hover">
+                            <div class="font-bold text-white text-sm mb-1">Hardware Agnostic</div>
+                            <div class="text-xs text-gray-400">Runs smoothly on standard hospital workstation CPUs without requiring proprietary server clusters.</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="fade-in order-1 lg:order-2">
-                    <div class="placeholder-slot" style="min-height:380px; border-radius: 24px;">
-                        <picture>
-                            <source srcset="gui.webp" type="image/webp">
-                            <img src="gui.jpeg" alt="Custom Knowledge Base: showing how Vitae trains on your medical textbooks with vector storage" width="1280" height="800" loading="lazy" decoding="async">
-                        </picture>
+                <div>
+                    <div class="video-window mockup-shadow">
+                        <div class="video-header justify-between">
+                            <div class="flex items-center">
+                                <span class="video-dot bg-red-500/80"></span>
+                                <span class="video-dot bg-yellow-500/80"></span>
+                                <span class="video-dot bg-emerald-500/80"></span>
+                                <span class="text-xs text-gray-400 font-mono ml-2">command-center.app/academic-decks</span>
+                            </div>
+                            <span class="badge-tech">Vector Knowledge Store</span>
+                        </div>
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                            <img src="public/images/11_command_center_academic_decks.png" alt="Academic Textbook Deck Manager" class="w-full h-full object-cover">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -389,38 +764,44 @@
 
     <div class="glow-line relative z-10"></div>
 
-    <!-- Comparison Table -->
+    <!-- Comparison Table: Vitae 2.0 vs Public Cloud AI -->
     <section id="compare" class="relative z-10">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
-                <div class="fade-in inline-block bg-blue-500/10 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-blue-500/20">Why Vitae</div>
-                <h2 class="fade-in text-4xl md:text-5xl font-black mb-6 font-heading">
-                    <span class="font-brand font-extrabold text-white">Vitae<span class="w-2 h-2 rounded-full bg-blue-400 inline-block ml-1 animate-pulse"></span></span> vs Cloud AI
+                <div class="inline-block bg-blue-500/10 text-blue-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-blue-500/20">
+                    Enterprise Evaluation
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-black mb-4 font-heading">
+                    <span class="text-white">Vitae 2.0</span> vs Public Cloud AI
                 </h2>
-                <p class="fade-in text-gray-400 max-w-2xl mx-auto text-lg">See why healthcare professionals, researchers, and institutions choose Vitae over cloud-based AI tools like ChatGPT.</p>
+                <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+                    Why healthcare systems and academic institutions deploy Vitae instead of generic web chatbots.
+                </p>
             </div>
-            <div class="fade-in glass rounded-3xl overflow-hidden">
+            <div class="glass rounded-3xl overflow-hidden border border-white/10">
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
-                            <tr class="border-b border-white/5">
-                                <th class="text-left p-5 text-gray-400 font-medium">Feature</th>
+                            <tr class="border-b border-white/10 bg-slate-900/60">
+                                <th class="text-left p-5 text-gray-400 font-semibold text-sm">Clinical & Security Feature</th>
                                 <th class="text-center p-5">
-                                    <div class="inline-flex items-center justify-center">
-                                        <img src="public/emblem.png" alt="Vitae" class="h-9 w-9 logo-glow rounded-lg">
+                                    <div class="inline-flex items-center justify-center gap-2">
+                                        <img src="public/emblem.png" alt="Vitae" class="table-emblem logo-glow rounded-lg" width="32" height="32">
+                                        <span class="font-bold text-white">Vitae 2.0</span>
                                     </div>
                                 </th>
-                                <th class="text-center p-5 text-gray-500 font-medium">ChatGPT / Cloud AI</th>
+                                <th class="text-center p-5 text-gray-400 font-semibold text-sm">ChatGPT / Claude (Cloud)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b border-white/5"><td class="p-5 text-sm">Runs offline</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto"><svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></td></tr>
-                            <tr class="border-b border-white/5"><td class="p-5 text-sm">Data stays on your device</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto"><svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></td></tr>
-                            <tr class="border-b border-white/5"><td class="p-5 text-sm">Trained on YOUR textbooks</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto"><svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></td></tr>
-                            <tr class="border-b border-white/5"><td class="p-5 text-sm">Personalized with your name</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto"><svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></td></tr>
-                            <tr class="border-b border-white/5"><td class="p-5 text-sm">Custom avatar included</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto"><svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></td></tr>
-                            <tr class="border-b border-white/5"><td class="p-5 text-sm">One-time payment</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center text-sm text-gray-500">$20/mo</td></tr>
-                            <tr><td class="p-5 text-sm">HIPAA-friendly</td><td class="p-5 text-center"><div class="compare-icon bg-green-500/10 mx-auto"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto"><svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">100% Offline Air-Gapped Execution</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">✗</div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">Zero Patient Data Ingestion to Third Parties</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">✗</div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">SOCRATES Emergency Clinical Intake Protocol</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">✗</div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">Dynamic Golden Hour Emergency Simulator</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">✗</div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">Hospital Triage Dashboard & Urgency Sorting</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">✗</div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">1-Click Clinical PDF Summary Generation</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">✗</div></td></tr>
+                            <tr class="border-b border-white/5"><td class="p-5 text-sm font-medium">Native Bilingual Urdu RTL Speech & Text</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center"><div class="compare-icon bg-red-500/10 mx-auto text-red-400 font-bold">Partial</div></td></tr>
+                            <tr><td class="p-5 text-sm font-medium">Predictable Enterprise Pricing (No Per-Token Bill)</td><td class="p-5 text-center"><div class="compare-icon bg-emerald-500/10 mx-auto text-emerald-400 font-bold">✓</div></td><td class="p-5 text-center text-sm text-gray-500">$20+/mo per seat + API tokens</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -428,161 +809,217 @@
         </div>
     </section>
 
-    <!-- Coming Soon: Voice Cloning -->
-    <section class="relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="glass rounded-3xl p-12 text-center relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5"></div>
-                <div class="ribbon">Coming Soon</div>
-                <div class="relative z-10">
-                    <h2 class="fade-in text-3xl md:text-4xl font-black mb-4 font-heading">Voice Cloning is <span class="gradient-text">Next</span></h2>
-                    <p class="fade-in text-gray-400 max-w-2xl mx-auto">Maya already speaks and listens with natural vocal synthesis. Next, experience custom voice cloning—train your AI assistant to respond in your own voice.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Row -->
-    <section class="relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="fade-in grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass rounded-2xl p-6 text-center card-hover"><div class="text-3xl font-black gradient-text mb-2">100%</div><div class="text-sm text-gray-500">Offline</div></div>
-                <div class="glass rounded-2xl p-6 text-center card-hover"><div class="text-3xl font-black gradient-text mb-2">3</div><div class="text-sm text-gray-500">AI Modes</div></div>
-                <div class="glass rounded-2xl p-6 text-center card-hover"><div class="text-3xl font-black gradient-text mb-2">0</div><div class="text-sm text-gray-500">Data Leaks</div></div>
-                <div class="glass rounded-2xl p-6 text-center card-hover"><div class="text-3xl font-black gradient-text mb-2">24/7</div><div class="text-sm text-gray-500">Available</div></div>
-            </div>
-        </div>
-    </section>
+    <div class="glow-line relative z-10"></div>
 
     <!-- FAQ -->
     <section id="faq" class="relative z-10">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-16">
-                <div class="fade-in inline-block bg-blue-500/10 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-blue-500/20">FAQ</div>
-                <h2 class="fade-in text-4xl md:text-5xl font-black">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <div class="inline-block bg-blue-500/10 text-blue-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-blue-500/20">FAQ</div>
+                <h2 class="text-3xl sm:text-5xl font-black">Frequently Asked <span class="gradient-text">Questions</span></h2>
             </div>
-            <div class="space-y-3">
-                <div class="fade-in glass rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left"><span class="font-semibold text-white font-heading">Is my patient data private and HIPAA-friendly?</span><svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-6"><p class="text-gray-400 leading-relaxed pb-6">100% private. Vitae operates entirely on your local machine using offline AI models. Zero patient data or intake history is transmitted to cloud servers.</p></div></div>
-                <div class="fade-in glass rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left"><span class="font-semibold text-white font-heading">Does Vitae work completely offline?</span><svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-6"><p class="text-gray-400 leading-relaxed pb-6">Yes. Once installed, Vitae runs 100% offline without needing an active internet connection, external APIs, or monthly cloud tokens.</p></div></div>
-                <div class="fade-in glass rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left"><span class="font-semibold text-white font-heading">Can I ingest custom medical handbooks or specialty textbooks?</span><svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-6"><p class="text-gray-400 leading-relaxed pb-6">Yes. Provide any medical reference in PDF format and we index it into your local vector database so Maya answers strictly from your chosen literature.</p></div></div>
-                <div class="fade-in glass rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left"><span class="font-semibold text-white font-heading">What are the minimum system requirements?</span><svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-6"><p class="text-gray-400 leading-relaxed pb-6"><strong class="text-white">Minimum Estimated System Requirements:</strong> Windows 10 or later (64-bit), minimum 8 GB RAM, and minimum 4 GB free disk space. Runs on standard CPUs (no discrete GPU required). <em class="text-gray-500 text-xs block mt-1">Note: Requirements are estimated minimums and subject to change based on final build optimization.</em></p></div></div>
-                <div class="fade-in glass rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left"><span class="font-semibold text-white font-heading">What is the custom avatar feature?</span><svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-6"><p class="text-gray-400 leading-relaxed pb-6">We generate a personalized 3D avatar using your photo, fully lip-synced to Maya's spoken clinical responses. Every license includes your own custom 3D avatar 100% free of charge.</p></div></div>
+            <div class="space-y-4">
+                <div class="fade-in glass rounded-2xl overflow-hidden border border-white/5">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-semibold text-white font-heading text-sm sm:text-base">Can Vitae 2.0 be deployed on an air-gapped hospital network?</span>
+                        <svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-gray-400 text-sm leading-relaxed pb-6">Yes, absolutely. Vitae is built from the ground up for air-gapped environments. The vector store, speech engines, and LLM inference run 100% on local hardware. No outgoing internet connection is required or attempted.</p>
+                    </div>
+                </div>
+
+                <div class="fade-in glass rounded-2xl overflow-hidden border border-white/5">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-semibold text-white font-heading text-sm sm:text-base">How does Vitae export data to our hospital EHR / EMR?</span>
+                        <svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-gray-400 text-sm leading-relaxed pb-6">Vitae generates instant 1-click clinical discharge summaries formatted for standard print/PDF inclusion. In enterprise deployments, Vitae exposes REST endpoints (`/api/triage/records`) that easily interface with HL7/FHIR middleware.</p>
+                    </div>
+                </div>
+
+                <div class="fade-in glass rounded-2xl overflow-hidden border border-white/5">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-semibold text-white font-heading text-sm sm:text-base">Can we load our university or hospital's specific medical textbooks?</span>
+                        <svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-gray-400 text-sm leading-relaxed pb-6">Yes. The Faculty Suite and Doctor Command Center allow you to ingest standard PDF textbooks, clinical handbooks, and clinical management guidelines into localized FAISS vector databases in minutes.</p>
+                    </div>
+                </div>
+
+                <div class="fade-in glass rounded-2xl overflow-hidden border border-white/5">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-semibold text-white font-heading text-sm sm:text-base">What hardware is required to run Vitae 2.0?</span>
+                        <svg class="w-5 h-5 text-gray-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-gray-400 text-sm leading-relaxed pb-6">Vitae is optimized for modern workstations. A standard Windows 10/11 machine with 16 GB RAM and a modern quad-core CPU can run the full suite. Dedicated GPUs (RTX 3060+) can optionally be used for ultra-low sub-second voice generation.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Medical Disclaimer -->
-    <section class="relative z-10" style="padding-top:0;padding-bottom:40px">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="fade-in glass rounded-2xl p-6 text-center">
-                <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-400">Medical Disclaimer:</strong> Vitae is a clinical support tool designed to assist healthcare professionals. It does not replace professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions.</p>
+    <section class="py-8 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="fade-in glass rounded-2xl p-6 text-center border border-white/5">
+                <p class="text-xs text-gray-500 leading-relaxed">
+                    <strong class="text-gray-400">Clinical Notice:</strong> Vitae 2.0 is an intelligent clinical decision support and training suite. It is designed to assist licensed physicians and medical educators. It does not supersede independent diagnostic evaluation by certified medical personnel.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section id="contact" class="relative z-10">
+    <!-- Lead Capture / Trial Request CTA -->
+    <section id="contact" class="relative z-10 pb-24">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <div class="fade-in inline-block bg-blue-500/10 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6 border border-blue-500/20">Get Started</div>
-                <h2 class="fade-in text-4xl md:text-5xl font-black mb-6 font-heading">Request Your <span class="gradient-text">Free Trial</span></h2>
-                <p class="fade-in text-gray-400 max-w-xl mx-auto text-lg">Experience 30 days of Vitae with zero commitment. No credit card required.</p>
+            <div class="text-center mb-14">
+                <div class="inline-block bg-blue-500/10 text-blue-400 text-xs md:text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-blue-500/20">Get Started</div>
+                <h2 class="text-3xl sm:text-5xl font-black mb-4 font-heading">
+                    Schedule an <span class="gradient-text">Institutional Demo</span>
+                </h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-base">
+                    Discover how Vitae 2.0 modernizes intake, streamlines triage, and transforms medical education. Experience a customized pilot on your own hardware.
+                </p>
             </div>
-            <div class="fade-in glass rounded-3xl p-10 max-w-2xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 max-w-2xl mx-auto border border-white/10">
                 <form id="contact-form" action="https://formsubmit.co/banoorimoeen@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Vitae Trial Request">
+                    <input type="hidden" name="_subject" value="Vitae 2.0 Institutional Demo Request">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://moeenxban.github.io/medpal-website-/#submitted">
                     <div class="space-y-4">
-                        <input type="text" name="name" placeholder="Your Name" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                        <input type="email" name="email" placeholder="Email Address" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                        <input type="text" name="organization" placeholder="Hospital / Clinic Name" class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                        <select name="role" class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                            <option value="" disabled selected>Your Role</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="nurse">Nurse</option>
-                            <option value="administrator">Administrator</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <textarea name="message" placeholder="Tell us about your needs..." rows="3" class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"></textarea>
-                        <button type="submit" class="w-full bg-white text-black py-4 rounded-xl font-semibold hover:bg-gray-200 transition btn-white-glow">Request Free Trial</button>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" name="name" placeholder="Full Name & Title" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition text-sm">
+                            <input type="email" name="email" placeholder="Institutional Email" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition text-sm">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" name="organization" placeholder="Hospital / Medical University" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition text-sm">
+                            <select name="role" class="w-full px-5 py-4 bg-slate-900 border border-white/10 rounded-xl text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition text-sm">
+                                <option value="" disabled selected>Your Institutional Role</option>
+                                <option value="Chief Medical Officer / Medical Director">Chief Medical Officer / Medical Director</option>
+                                <option value="Department Chair / Head of Emergency">Department Chair / Head of Emergency</option>
+                                <option value="Medical School Dean / Faculty">Medical School Dean / Faculty</option>
+                                <option value="Hospital IT / Clinical Informatics">Hospital IT / Clinical Informatics</option>
+                                <option value="Attending Physician / Clinician">Attending Physician / Clinician</option>
+                                <option value="Other">Other Executive</option>
+                            </select>
+                        </div>
+                        <textarea name="message" placeholder="Describe your department's triage or simulation requirements..." rows="3" class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none text-sm"></textarea>
+                        <button type="submit" class="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition btn-white-glow text-base">
+                            Request On-Premise Demo & Pilot
+                        </button>
                     </div>
                 </form>
-                <div id="form-success" class="hidden text-center py-16">
-                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
-                    <h3 class="text-2xl font-bold mb-2">Thank You!</h3>
-                    <p class="text-gray-400">We will get back to you within 24 hours.</p>
+                <div id="form-success" class="hidden text-center py-12">
+                    <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Request Received!</h3>
+                    <p class="text-gray-400 text-sm">Our clinical technology team will connect within 24 hours to coordinate your trial installation.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 relative z-10 bg-black/40 backdrop-blur-xl">
+    <footer class="py-12 border-t border-white/10 relative z-10 bg-black/60 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <a href="#" class="flex items-center group">
-                <img src="public/logo.png" alt="Vitae" class="h-14 w-auto logo-glow">
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="public/logo.png" alt="Vitae 2.0" class="footer-logo logo-glow" height="44">
                 </a>
                 <div class="text-center md:text-right">
-                    <p class="text-gray-400 text-sm font-heading">Developed by <a href="https://www.linkedin.com/in/syed-ghulam-moeen-ud-din-banoori-05227330a/" target="_blank" rel="noopener noreferrer" class="text-white font-semibold gradient-text hover:underline inline-flex items-center gap-1 group">Syed Ghulam Moeen Ud Din Shah Banoori<svg class="w-3.5 h-3.5 text-blue-400 inline opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></p>
-                    <p class="text-gray-500 text-xs mt-1">&copy; 2026 All rights reserved. | <a href="mailto:banoorimoeen@gmail.com" class="hover:text-blue-400 transition">banoorimoeen@gmail.com</a></p>
+                    <p class="text-gray-400 text-sm font-heading">
+                        Architected by <a href="https://www.linkedin.com/in/syed-ghulam-moeen-ud-din-banoori-05227330a/" target="_blank" rel="noopener noreferrer" class="text-white font-semibold gradient-text hover:underline inline-flex items-center gap-1 group">Syed Ghulam Moeen Ud Din Shah Banoori<svg class="w-3.5 h-3.5 text-blue-400 inline opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </p>
+                    <p class="text-gray-500 text-xs mt-1">&copy; 2026 Vitae Platform. All rights reserved. | <a href="mailto:banoorimoeen@gmail.com" class="hover:text-blue-400 transition">banoorimoeen@gmail.com</a></p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Particles
-        (function(){var c=document.getElementById('particles');for(var i=0;i<25;i++){var p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDuration=(Math.random()*20+15)+'s';p.style.animationDelay=Math.random()*10+'s';c.appendChild(p);}})();
-        
-        // Navbar & Scroll Spy
-        var sections = document.querySelectorAll('section[id]');
-        var navLinks = document.querySelectorAll('.nav-link');
-        function highlightNavOnScroll(){
-            var scrollY = window.pageYOffset;
-            sections.forEach(function(current){
-                var sectionHeight = current.offsetHeight;
-                var sectionTop = current.offsetTop - 180;
-                var sectionId = current.getAttribute('id');
-                if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-                    navLinks.forEach(function(link){
-                        if(link.getAttribute('href') === '#' + sectionId){
-                            link.classList.add('active');
-                        } else {
-                            link.classList.remove('active');
-                        }
-                    });
-                }
-            });
+        // Particles Generator
+        (function(){
+            var c = document.getElementById('particles');
+            for(var i=0; i<25; i++){
+                var p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random()*100 + '%';
+                p.style.animationDuration = (Math.random()*20 + 15) + 's';
+                p.style.animationDelay = Math.random()*10 + 's';
+                c.appendChild(p);
+            }
+        })();
+
+        // Hero Video Switcher
+        function switchHeroVideo(mode) {
+            var player = document.getElementById('hero-video-player');
+            var address = document.getElementById('hero-window-address');
+            var btnSim = document.getElementById('btn-hero-sim');
+            var btnScribe = document.getElementById('btn-hero-scribe');
+            var btnTutor = document.getElementById('btn-hero-tutor');
+
+            btnSim.className = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
+            btnScribe.className = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
+            btnTutor.className = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
+
+            var activeClass = 'px-3.5 py-1.5 rounded-lg bg-blue-600/30 border border-blue-500/50 text-white font-medium hover:bg-blue-600/50 transition';
+
+            if(mode === 'simulator') {
+                player.src = 'public/videos/simulator-preview.mp4';
+                if(address) address.innerText = 'vitae://simulator/icu-chamber-live';
+                btnSim.className = activeClass;
+            } else if(mode === 'scribe') {
+                player.src = 'public/videos/scribe-preview.mp4';
+                if(address) address.innerText = 'vitae://patient-kiosk/intake-scribe';
+                btnScribe.className = activeClass;
+            } else if(mode === 'tutor') {
+                player.src = 'public/videos/tutor-preview.mp4';
+                if(address) address.innerText = 'vitae://faculty-suite/socratic-tutor';
+                btnTutor.className = activeClass;
+            }
+            player.play();
         }
+
+        // Navbar Scroll
         window.addEventListener('scroll', function(){
             var n = document.getElementById('navbar');
-            n.style.background = window.scrollY > 50 ? 'rgba(3,7,18,0.85)' : 'transparent';
-            n.style.backdropFilter = window.scrollY > 50 ? 'blur(20px)' : 'none';
-            highlightNavOnScroll();
+            n.style.background = window.scrollY > 40 ? 'rgba(3,7,18,0.88)' : 'transparent';
+            n.style.backdropFilter = window.scrollY > 40 ? 'blur(20px)' : 'none';
         });
-        highlightNavOnScroll();
-        
-        // Fade in
-        var obs=new IntersectionObserver(function(e){e.forEach(function(el){if(el.isIntersecting)el.target.classList.add('visible');});},{threshold:0.1});
-        document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el);});
-        
-        // FAQ
-        function toggleFaq(b){var a=b.nextElementSibling;var i=b.querySelector('.faq-icon');a.classList.toggle('open');i.style.transform=a.classList.contains('open')?'rotate(180deg)':'rotate(0)';}
-        
-        // Tabs
-        function switchTab(t, evt){
+
+        // Intersection Observer for Fade-ins
+        var obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(el){
+                if(el.isIntersecting) el.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el){ obs.observe(el); });
+
+        // Tab Switching for Pillars
+        function switchPillarTab(pillarId, evt) {
             document.querySelectorAll('.tab-content').forEach(function(el){ el.classList.remove('active'); });
             document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
-            var target = document.getElementById('tab-'+t);
-            target.classList.add('active');
-            var btn = evt ? (evt.target || evt.srcElement) : null;
+            var target = document.getElementById('pillar-' + pillarId);
+            if(target) target.classList.add('active');
+            var btn = evt ? (evt.target.closest('.tab-btn') || evt.target) : null;
             if(btn) btn.classList.add('active');
         }
 
-        // Mobile Menu Toggle
+        // FAQ Toggle
+        function toggleFaq(btn){
+            var answer = btn.nextElementSibling;
+            var icon = btn.querySelector('.faq-icon');
+            answer.classList.toggle('open');
+            icon.style.transform = answer.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0)';
+        }
+
+        // Mobile Menu Drawer
         function toggleMobileMenu(){
             var m = document.getElementById('mobile-menu');
             if(m.classList.contains('hidden')){
@@ -593,46 +1030,95 @@
                 setTimeout(function(){ m.classList.add('hidden'); }, 300);
             }
         }
-        
-        // Demo
-        var demoMessages=[{user:true,text:"I've been having chest pain for 2 hours"},{user:false,text:"Chest pain can sometimes be a medical emergency. If your pain is severe, worsening, or associated with shortness of breath, sweating, fainting, nausea, or pain spreading to your arm, jaw, neck, or back, please seek emergency medical care immediately or call your local emergency services. I will also collect some information to help your doctor understand your symptoms. First, where exactly is the chest pain located?"},{user:true,text:"It's on the left side, near my heart"},{user:false,text:"Thank you. Is the pain sharp, dull, or crushing? Does it get worse when you breathe or move?"},{user:true,text:"It's sharp and gets worse when I breathe"},{user:false,text:"Are you experiencing any shortness of breath, sweating, or nausea along with the pain?"},{user:true,text:"Yes, I'm sweating and feel nauseous"},{user:false,text:"These symptoms require immediate medical attention. Please go to the nearest emergency room or call emergency services right now. Do not drive yourself."}];
-        var demoIndex=0;
-        function startDemo(){var c=document.getElementById('chat-demo');c.innerHTML='';demoIndex=0;document.getElementById('demo-btn').disabled=true;document.getElementById('demo-btn').innerText='Playing...';showNextMessage();}
-        function showNextMessage(){var c=document.getElementById('chat-demo');if(demoIndex>=demoMessages.length){document.getElementById('demo-btn').disabled=false;document.getElementById('demo-btn').innerText='Play Demo Again';return;}var m=demoMessages[demoIndex];if(!m.user){var t=document.createElement('div');t.className='flex gap-3 justify-end';t.innerHTML='<div class="bg-blue-600 text-sm px-4 py-2.5 rounded-2xl rounded-tr-md max-w-[80%] typing-dots"><span>.</span> <span>.</span> <span>.</span></div><div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-xs font-bold">AI</span></div>';c.appendChild(t);setTimeout(function(){c.removeChild(t);addBubble(m);demoIndex++;setTimeout(showNextMessage,600);},1200);}else{addBubble(m);demoIndex++;setTimeout(showNextMessage,600);}}
-        function addBubble(m){var c=document.getElementById('chat-demo');var d=document.createElement('div');d.className=m.user?'flex gap-3':'flex gap-3 justify-end';var bg=m.user?'bg-gray-800':'bg-blue-600';var align=m.user?'rounded-tl-md':'rounded-tr-md';var avatar=m.user?'<div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-xs font-bold">P</span></div>':'<div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-xs font-bold">AI</span></div>';d.innerHTML=(m.user?'':avatar)+'<div class="'+bg+' text-sm px-4 py-2.5 rounded-2xl '+align+' max-w-[80%] chat-bubble">'+m.text+'</div>'+(m.user?avatar:'');c.appendChild(d);setTimeout(function(){d.querySelector('.chat-bubble').classList.add('show');},50);c.scrollTop=c.scrollHeight;}
-        
-        // Form
-        if(window.location.hash==='#submitted'){document.getElementById('contact-form').classList.add('hidden');document.getElementById('form-success').classList.remove('hidden');}
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+
+        // Interactive SOCRATES Chat Demo
+        var demoMessages = [
+            { user: true, text: "I've been experiencing severe chest tightness for the past 45 minutes." },
+            { user: false, text: "I understand you are having chest tightness. This can be serious. First: where exactly is the pain situated, and does it radiate anywhere—such as your left arm, jaw, or shoulder?" },
+            { user: true, text: "It's crushing under my breastbone and shooting up into my left neck and jaw." },
+            { user: false, text: "Understood: retrosternal crushing pain with left cervical/jaw radiation. Are you experiencing any shortness of breath, profuse sweating, or nausea?" },
+            { user: true, text: "Yes, I am breaking out into a cold sweat and feel very nauseous." },
+            { user: false, text: "⚠️ CLINICAL RED FLAG DETECTED: Symptoms are highly indicative of Acute Coronary Syndrome (ACS / Myocardial Infarction). Emergency protocol activated: Alerting triage attending physician immediately. Stay seated and do not exert yourself." }
+        ];
+        var demoIndex = 0;
+        function startDemo(){
+            var c = document.getElementById('chat-demo');
+            c.innerHTML = '';
+            demoIndex = 0;
+            document.getElementById('demo-btn').disabled = true;
+            document.getElementById('demo-btn').innerText = 'Simulating Clinical Interrogation...';
+            showNextMessage();
+        }
+        function showNextMessage(){
+            var c = document.getElementById('chat-demo');
+            if(demoIndex >= demoMessages.length){
+                document.getElementById('demo-btn').disabled = false;
+                document.getElementById('demo-btn').innerText = 'Replay Triage Simulation';
+                return;
+            }
+            var m = demoMessages[demoIndex];
+            if(!m.user){
+                var typing = document.createElement('div');
+                typing.className = 'flex gap-3 justify-end items-center';
+                typing.innerHTML = '<div class="bg-blue-600/30 text-xs px-4 py-2.5 rounded-2xl rounded-tr-sm border border-blue-500/40 text-blue-200">Analyzing clinical symptoms...</div><div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs text-white">AI</div>';
+                c.appendChild(typing);
+                c.scrollTop = c.scrollHeight;
+                setTimeout(function(){
+                    c.removeChild(typing);
+                    addBubble(m);
+                    demoIndex++;
+                    setTimeout(showNextMessage, 800);
+                }, 1200);
+            } else {
+                addBubble(m);
+                demoIndex++;
+                setTimeout(showNextMessage, 600);
+            }
+        }
+        function addBubble(m){
+            var c = document.getElementById('chat-demo');
+            var row = document.createElement('div');
+            row.className = m.user ? 'flex gap-3 items-start' : 'flex gap-3 justify-end items-start';
+            var bg = m.user ? 'bg-slate-800 text-gray-200 border border-white/10' : (m.text.includes('RED FLAG') ? 'bg-red-950/80 text-red-200 border border-red-500/50' : 'bg-blue-600 text-white');
+            var align = m.user ? 'rounded-tl-sm' : 'rounded-tr-sm';
+            var avatar = m.user 
+                ? '<div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">PT</div>'
+                : '<div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">AI</div>';
+            row.innerHTML = (m.user ? avatar : '') + '<div class="' + bg + ' text-xs sm:text-sm px-4 py-3 rounded-2xl ' + align + ' max-w-[85%] leading-relaxed">' + m.text + '</div>' + (m.user ? '' : avatar);
+            c.appendChild(row);
+            c.scrollTop = c.scrollHeight;
+        }
+
+        // Contact Form
+        if(window.location.hash === '#submitted'){
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+        }
+        document.getElementById('contact-form').addEventListener('submit', function(e){
             e.preventDefault();
             var form = this;
             var btn = form.querySelector('button[type="submit"]');
             var origText = btn.innerText;
-            btn.innerText = 'Sending Request...';
+            btn.innerText = 'Submitting Request...';
             btn.disabled = true;
-            
+
             var formData = new FormData(form);
-            
             fetch('https://formsubmit.co/ajax/banoorimoeen@gmail.com', {
                 method: 'POST',
-                headers: {
-                    'Accept': 'application/json'
-                },
+                headers: { 'Accept': 'application/json' },
                 body: formData
-            })
-            .then(function(response) {
-                if (response.ok) {
+            }).then(function(res){
+                if(res.ok){
                     form.reset();
                     form.classList.add('hidden');
                     document.getElementById('form-success').classList.remove('hidden');
                 } else {
-                    alert('Something went wrong. Please try submitting again or email directly to banoorimoeen@gmail.com');
+                    alert('Submission failed. Please email banoorimoeen@gmail.com directly.');
                     btn.innerText = origText;
                     btn.disabled = false;
                 }
-            })
-            .catch(function(error) {
-                alert('Network error. Please check your connection and try again.');
+            }).catch(function(){
+                alert('Network error. Please try again.');
                 btn.innerText = origText;
                 btn.disabled = false;
             });

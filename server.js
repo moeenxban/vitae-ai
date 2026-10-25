@@ -13,7 +13,8 @@ const MIME_TYPES = {
     '.jpg': 'image/jpeg',
     '.png': 'image/png',
     '.svg': 'image/svg+xml',
-    '.json': 'application/json; charset=UTF-8'
+    '.json': 'application/json; charset=UTF-8',
+    '.mp4': 'video/mp4'
 };
 
 const server = http.createServer((req, res) => {
@@ -23,18 +24,39 @@ const server = http.createServer((req, res) => {
     let ext = path.extname(filePath).toLowerCase();
     let contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-    fs.readFile(filePath, (err, content) => {
+    fs.stat(filePath, (err, stats) => {
         if (err) {
-            if (err.code === 'ENOENT') {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('404 Not Found');
-            } else {
-                res.writeHead(500, { 'Content-Type': 'text/plain' });
-                res.end('500 Internal Server Error');
-            }
+            res.writeHead(err.code === 'ENOENT' ? 404 : 500, { 'Content-Type': 'text/plain' });
+            res.end(err.code === 'ENOENT' ? '404 Not Found' : '500 Internal Server Error');
+            return;
+        }
+
+        // Support HTTP Range requests for video streaming
+        let range = req.headers.range;
+        if (range && ext === '.mp4') {
+            let total = stats.size;
+            let parts = range.replace(/bytes=/, "").split("-");
+            let partialstart = parts[0];
+            let partialend = parts[1];
+
+            let start = parseInt(partialstart, 10);
+            let end = partialend ? parseInt(partialend, 10) : total - 1;
+            let chunksize = (end - start) + 1;
+
+            let file = fs.createReadStream(filePath, { start: start, end: end });
+            res.writeHead(206, {
+                'Content-Range': `bytes ${start}-${end}/${total}`,
+                'Accept-Ranges': 'bytes',
+                'Content-Length': chunksize,
+                'Content-Type': contentType
+            });
+            file.pipe(res);
         } else {
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content);
+            res.writeHead(200, {
+                'Content-Length': stats.size,
+                'Content-Type': contentType
+            });
+            fs.createReadStream(filePath).pipe(res);
         }
     });
 });
@@ -44,7 +66,6 @@ server.listen(PORT, '0.0.0.0', () => {
     console.log(`  Vitae Local Web Server Running!`);
     console.log(`========================================================\n`);
     console.log(`  PC Local:  http://127.0.0.1:${PORT}/`);
-    console.log(`  Mobile:    http://192.168.1.2:${PORT}/`);
     console.log(`\n  Keep this terminal window open while testing.`);
     console.log(`  Press Ctrl + C to stop the server.\n`);
 });
