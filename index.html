@@ -219,10 +219,19 @@
                                 <span class="badge-live">● Live Motion</span>
                             </div>
                         </div>
-                        <div class="video-content bg-slate-950 aspect-[16/10] relative overflow-hidden flex items-center justify-center">
-                            <video id="hero-video-player" autoplay loop muted playsinline class="w-full h-full object-cover">
+                        <div class="video-content bg-slate-950 aspect-[16/10] relative overflow-hidden">
+                            <!-- Layer 1: Emergency Simulator (Default Active) -->
+                            <video id="hero-vid-sim" autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-100 z-10">
                                 <source src="public/videos/simulator-preview.mp4" type="video/mp4">
                                 Your browser does not support HTML5 video.
+                            </video>
+                            <!-- Layer 2: Autonomous Intake Kiosk -->
+                            <video id="hero-vid-scribe" autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0 z-0 pointer-events-none">
+                                <source src="public/videos/scribe-preview.mp4" type="video/mp4">
+                            </video>
+                            <!-- Layer 3: Socratic Medical Tutor -->
+                            <video id="hero-vid-tutor" autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0 z-0 pointer-events-none">
+                                <source src="public/videos/tutor-preview.mp4" type="video/mp4">
                             </video>
                         </div>
                         <!-- Video Switcher Controls -->
@@ -956,34 +965,49 @@
             }
         })();
 
-        // Hero Video Switcher
+        // Smooth 60fps Video Crossfade Switcher (Zero Reload Stutter)
         function switchHeroVideo(mode) {
-            var player = document.getElementById('hero-video-player');
+            var modes = ['simulator', 'scribe', 'tutor'];
+            var videoMap = {
+                'simulator': document.getElementById('hero-vid-sim'),
+                'scribe': document.getElementById('hero-vid-scribe'),
+                'tutor': document.getElementById('hero-vid-tutor')
+            };
+            var btnMap = {
+                'simulator': document.getElementById('btn-hero-sim'),
+                'scribe': document.getElementById('btn-hero-scribe'),
+                'tutor': document.getElementById('btn-hero-tutor')
+            };
+            var titles = {
+                'simulator': 'vitae://simulator/icu-chamber-live',
+                'scribe': 'vitae://patient-kiosk/intake-scribe',
+                'tutor': 'vitae://faculty-suite/socratic-tutor'
+            };
+            
             var address = document.getElementById('hero-window-address');
-            var btnSim = document.getElementById('btn-hero-sim');
-            var btnScribe = document.getElementById('btn-hero-scribe');
-            var btnTutor = document.getElementById('btn-hero-tutor');
-
-            btnSim.className = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
-            btnScribe.className = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
-            btnTutor.className = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
+            if (address && titles[mode]) address.innerText = titles[mode];
 
             var activeClass = 'px-3.5 py-1.5 rounded-lg bg-blue-600/30 border border-blue-500/50 text-white font-medium hover:bg-blue-600/50 transition';
+            var inactiveClass = 'px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-medium hover:bg-white/10 transition';
 
-            if(mode === 'simulator') {
-                player.src = 'public/videos/simulator-preview.mp4';
-                if(address) address.innerText = 'vitae://simulator/icu-chamber-live';
-                btnSim.className = activeClass;
-            } else if(mode === 'scribe') {
-                player.src = 'public/videos/scribe-preview.mp4';
-                if(address) address.innerText = 'vitae://patient-kiosk/intake-scribe';
-                btnScribe.className = activeClass;
-            } else if(mode === 'tutor') {
-                player.src = 'public/videos/tutor-preview.mp4';
-                if(address) address.innerText = 'vitae://faculty-suite/socratic-tutor';
-                btnTutor.className = activeClass;
-            }
-            player.play();
+            modes.forEach(function(m) {
+                var vid = videoMap[m];
+                var btn = btnMap[m];
+                if (m === mode) {
+                    if (vid) {
+                        vid.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+                        vid.classList.add('opacity-100', 'z-10');
+                        vid.play().catch(function(){});
+                    }
+                    if (btn) btn.className = activeClass;
+                } else {
+                    if (vid) {
+                        vid.classList.remove('opacity-100', 'z-10');
+                        vid.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+                    }
+                    if (btn) btn.className = inactiveClass;
+                }
+            });
         }
 
         // Navbar Scroll
